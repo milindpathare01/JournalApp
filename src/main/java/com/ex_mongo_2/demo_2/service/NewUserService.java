@@ -53,6 +53,7 @@ public class NewUserService {
 	
 	public NewUser findByusername(String username) {
 		return urepo.findByUsername1(username);
+		//temp commnd
 	}
 
 	public void saveAdmin(NewUser u1) {
