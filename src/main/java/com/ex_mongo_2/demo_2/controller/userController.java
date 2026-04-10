@@ -92,6 +92,7 @@ public class userController {
 		 }
 		return new ResponseEntity<>("hii "+username +greeting,HttpStatus.OK);
 	}
+	//I am just cleaning my code
 	
 }
 
