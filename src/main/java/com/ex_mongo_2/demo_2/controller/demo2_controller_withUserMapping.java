@@ -18,10 +18,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ex_mongo_2.demo_2.POJO.JournalEntry;
-import com.ex_mongo_2.demo_2.POJO.new_users_from_DB;
+import com.ex_mongo_2.demo_2.POJO.NewUser;
 import com.ex_mongo_2.demo_2.POJO.users;
-import com.ex_mongo_2.demo_2.service.JournalEntry_service;
-import com.ex_mongo_2.demo_2.service.new_userServices;
+import com.ex_mongo_2.demo_2.service.JournalEntryService;
+import com.ex_mongo_2.demo_2.service.NewUserService;
 import com.ex_mongo_2.demo_2.service.userServices;
 
 @RestController
@@ -29,7 +29,7 @@ import com.ex_mongo_2.demo_2.service.userServices;
 public class demo2_controller_withUserMapping {
 	
 	@Autowired
-	private JournalEntry_service service;
+	private JournalEntryService service;
 	
 	@Autowired
 	private userServices usersevices;

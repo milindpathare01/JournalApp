@@ -19,7 +19,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class new_users_from_DB {
+public class NewUser {
 	
 	@Id
 	private ObjectId id;

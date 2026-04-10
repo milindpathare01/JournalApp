@@ -10,7 +10,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
-import com.ex_mongo_2.demo_2.POJO.new_users_from_DB;
+import com.ex_mongo_2.demo_2.POJO.NewUser;
 import com.ex_mongo_2.demo_2.POJO.users;
 import com.ex_mongo_2.demo_2.repository.New_userRepo;
 import com.ex_mongo_2.demo_2.repository.userRepo;

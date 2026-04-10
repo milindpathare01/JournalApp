@@ -21,10 +21,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ex_mongo_2.demo_2.POJO.JournalEntry;
-import com.ex_mongo_2.demo_2.POJO.new_users_from_DB;
+import com.ex_mongo_2.demo_2.POJO.NewUser;
 import com.ex_mongo_2.demo_2.POJO.users;
-import com.ex_mongo_2.demo_2.service.JournalEntry_service;
-import com.ex_mongo_2.demo_2.service.new_userServices;
+import com.ex_mongo_2.demo_2.service.JournalEntryService;
+import com.ex_mongo_2.demo_2.service.NewUserService;
 import com.ex_mongo_2.demo_2.service.userServices;
 
 import org.slf4j.Logger;
@@ -38,17 +38,17 @@ public class controller_journalEntry {
 	private static final Logger log =  LoggerFactory.getLogger(controller_journalEntry.class);
 	
 	@Autowired
-	private JournalEntry_service service;
+	private JournalEntryService service;
 	
 	@Autowired
-	private new_userServices usersevices;
+	private NewUserService usersevices;
 	
 	@GetMapping
 	public ResponseEntity getAllJournalEnrtyofUser(){
 		
 		org.springframework.security.core.Authentication auth =  SecurityContextHolder.getContext().getAuthentication();
 		String username = auth.getName();
-		new_users_from_DB user = usersevices.findByusername(username);
+		NewUser user = usersevices.findByusername(username);
 		List<JournalEntry> all = user.getDataentry();
 		if(all !=null && !all.isEmpty()) {
 			return new ResponseEntity(all,HttpStatus.OK);
@@ -80,7 +80,7 @@ public class controller_journalEntry {
 	public ResponseEntity<?> getByIdContent(@PathVariable ObjectId id){
 		org.springframework.security.core.Authentication auth =  SecurityContextHolder.getContext().getAuthentication();
 		String username = auth.getName();
-	    new_users_from_DB user = 	usersevices.findByusername(username);
+	    NewUser user = 	usersevices.findByusername(username);
 	    List<JournalEntry> list =  user.getDataentry().stream().filter(x -> x.getId().equals(id)).collect(Collectors.toList());
 	    
 	  if(!list.isEmpty()) {

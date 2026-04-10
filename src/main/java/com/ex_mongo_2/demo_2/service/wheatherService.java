@@ -7,7 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import com.ex_mongo_2.demo_2.POJO.WheatherResponse;
+import com.ex_mongo_2.demo_2.POJO.WeatherResponse;
 import com.ex_mongo_2.demo_2.appChache.app_cache;
 
 
@@ -26,14 +26,14 @@ private String apikey ;
 	@Autowired
 	private app_cache cache;
 
-	public WheatherResponse getWheather(String city) {
+	public WeatherResponse getWheather(String city) {
 
 	    String finalAPI = cache.appcache.get("api_key")
 	            .replace("<CITY>", city)
 	            .replace("<MY_KEY>", apikey);
 
-	    ResponseEntity<WheatherResponse> response =
-	            restTemplate.exchange(finalAPI, HttpMethod.GET, null, WheatherResponse.class);
+	    ResponseEntity<WeatherResponse> response =
+	            restTemplate.exchange(finalAPI, HttpMethod.GET, null, WeatherResponse.class);
 
 	    return response.getBody();
 	}

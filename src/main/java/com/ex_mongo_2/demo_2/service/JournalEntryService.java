@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.ex_mongo_2.demo_2.POJO.JournalEntry;
-import com.ex_mongo_2.demo_2.POJO.new_users_from_DB;
+import com.ex_mongo_2.demo_2.POJO.NewUser;
 import com.ex_mongo_2.demo_2.POJO.users;
 import com.ex_mongo_2.demo_2.repository.New_userRepo;
 import com.ex_mongo_2.demo_2.repository.repo;
@@ -21,14 +21,14 @@ import com.ex_mongo_2.demo_2.repository.repo;
 
 @Service
 @Component
-public class JournalEntry_service {
+public class JournalEntryService {
 
 	
 	@Autowired
 	private repo r1;
 	
 	@Autowired
-	private new_userServices userservice;
+	private NewUserService userservice;
 	
 	
 	//This method used for the Complete new user save not For Update.
@@ -36,7 +36,7 @@ public class JournalEntry_service {
 	//this transactional annotation will help to sync One function as a single one container , 
 	//if any exception found or Error caught then all action will be rollbacked.
 	public void saveentry(JournalEntry p1,String username) {
-		new_users_from_DB u1 = userservice.findByusername(username);
+		NewUser u1 = userservice.findByusername(username);
 		p1.setDate(LocalDateTime.now());
 		JournalEntry data =  r1.save(p1);
 		u1.getDataentry().add(data); //IMP line where the in the perticular user it will be add a data entry.
@@ -54,7 +54,7 @@ public class JournalEntry_service {
 	@Transactional
 	public void deleteEntry(ObjectId id, String username) {
 		try {
-			new_users_from_DB user = userservice.findByusername(username);
+			NewUser user = userservice.findByusername(username);
 			boolean removed = user.getDataentry().removeIf(x -> x.getId().equals(id));   //this will delete the entry sync id with entry also and from the USER Also.
 			if(removed) {
 				userservice.saveNewEntry(user);  //When the Same id will getting 
@@ -74,7 +74,7 @@ public class JournalEntry_service {
 		r1.save(p1);
 	}
 	
-	public List<JournalEntry_service> findByUserName(String username){
+	public List<JournalEntryService> findByUserName(String username){
 		return null;
 		
 	}

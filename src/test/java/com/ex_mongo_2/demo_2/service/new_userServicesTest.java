@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import com.ex_mongo_2.demo_2.POJO.new_users_from_DB;
+import com.ex_mongo_2.demo_2.POJO.NewUser;
 import com.ex_mongo_2.demo_2.repository.New_userRepo;
 
 
@@ -23,7 +23,7 @@ public class new_userServicesTest {
 		assertEquals(4, 2+2);
 		assertNotNull(urepo.findByUsername1("nihan"));
 		assertTrue(5>3);
-		new_users_from_DB user = urepo.findByUsername1("nihan");
+		NewUser user = urepo.findByUsername1("nihan");
 		assertTrue(!user.getDataentry().isEmpty());
 	}
 

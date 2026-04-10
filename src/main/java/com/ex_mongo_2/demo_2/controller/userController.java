@@ -19,11 +19,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.ex_mongo_2.demo_2.POJO.WheatherResponse;
-import com.ex_mongo_2.demo_2.POJO.new_users_from_DB;
+import com.ex_mongo_2.demo_2.POJO.WeatherResponse;
+import com.ex_mongo_2.demo_2.POJO.NewUser;
 import com.ex_mongo_2.demo_2.POJO.users;
 import com.ex_mongo_2.demo_2.repository.userRepo;
-import com.ex_mongo_2.demo_2.service.new_userServices;
+import com.ex_mongo_2.demo_2.service.NewUserService;
 import com.ex_mongo_2.demo_2.service.userServices;
 import com.ex_mongo_2.demo_2.service.wheatherService;
 
@@ -32,20 +32,20 @@ import com.ex_mongo_2.demo_2.service.wheatherService;
 public class userController {
 
 	@Autowired
-	private new_userServices services;
+	private NewUserService services;
 	
 	@Autowired
 	private wheatherService wheatherservice;
 	
 	@GetMapping()
-	public List<new_users_from_DB> getAll() {
+	public List<NewUser> getAll() {
 		return services.getall(); 
 	}
 	
 	@GetMapping("id/{id}")
-	public Optional<new_users_from_DB> getbyID(@PathVariable String id) {	
+	public Optional<NewUser> getbyID(@PathVariable String id) {	
 		
-		Optional<new_users_from_DB> users = services.findByid(id);
+		Optional<NewUser> users = services.findByid(id);
 		if(users.isPresent()) {
 			return services.findByid(id);
 		}
@@ -54,30 +54,30 @@ public class userController {
 	}
 	
 	@PutMapping()
-	public ResponseEntity<?> updateDetails(@RequestBody new_users_from_DB newentry) {
+	public ResponseEntity<?> updateDetails(@RequestBody NewUser newentry) {
 
 		org.springframework.security.core.Authentication auth =  SecurityContextHolder.getContext().getAuthentication();
 		String username = auth.getName();
 		
-		new_users_from_DB userInDatabase = services.findByusername(username);
+		NewUser userInDatabase = services.findByusername(username);
 			
 			userInDatabase.setUsername1(newentry.getUsername1());
 			userInDatabase.setPassword(newentry.getPassword());
 			services.saveNewEntry(userInDatabase);
 			
-		 return new ResponseEntity<new_users_from_DB>(HttpStatus.NO_CONTENT);
+		 return new ResponseEntity<NewUser>(HttpStatus.NO_CONTENT);
 		
 	}
 	
 	@DeleteMapping("id/{id}")
-	public ResponseEntity<new_users_from_DB> updateDetails1(@PathVariable String id) {
+	public ResponseEntity<NewUser> updateDetails1(@PathVariable String id) {
 		
-		Optional<new_users_from_DB> userInDatabase = services.findByid(id);
+		Optional<NewUser> userInDatabase = services.findByid(id);
 		if(userInDatabase !=null) {
 		services.deleteEntry(id);
-		return new ResponseEntity<new_users_from_DB>(HttpStatus.OK);
+		return new ResponseEntity<NewUser>(HttpStatus.OK);
 		}
-		return new ResponseEntity<new_users_from_DB>(HttpStatus.NOT_FOUND);
+		return new ResponseEntity<NewUser>(HttpStatus.NOT_FOUND);
 	}
 	
 	@GetMapping("/myuser")
@@ -85,14 +85,13 @@ public class userController {
 		org.springframework.security.core.Authentication auth =  SecurityContextHolder.getContext().getAuthentication();
 		String username = auth.getName();
 		
-		 WheatherResponse reponse = wheatherservice.getWheather("Mumbai");
+		 WeatherResponse reponse = wheatherservice.getWheather("Mumbai");
 		 String greeting ="";
 		 if(reponse !=null) {
 			  greeting = " temp is " + reponse.getCurrent().getTemp_f();
 		 }
 		return new ResponseEntity<>("hii "+username +greeting,HttpStatus.OK);
 	}
-	//I am just cleaning my code
 	
 }
 

@@ -12,7 +12,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
-import com.ex_mongo_2.demo_2.POJO.new_users_from_DB;
+import com.ex_mongo_2.demo_2.POJO.NewUser;
 import com.ex_mongo_2.demo_2.POJO.users;
 import com.ex_mongo_2.demo_2.repository.New_userRepo;
 import com.ex_mongo_2.demo_2.repository.userRepo;
@@ -21,29 +21,29 @@ import com.ex_mongo_2.demo_2.repository.userRepo;
 @Service
 @Component
 //All business logic will be entered here.
-public class new_userServices {
+public class NewUserService {
 	
 	private static final PasswordEncoder pass = new BCryptPasswordEncoder();
 	
 	@Autowired
 	private New_userRepo urepo;
 	
-	public void saveNewEntry(new_users_from_DB u1) {
+	public void saveNewEntry(NewUser u1) {
 		u1.setUsername1(u1.getUsername1());
 		u1.setPassword(pass.encode(u1.getPassword()));
 		u1.setRoles(Arrays.asList("USER"));
 		urepo.save(u1);
 	}
 	
-	public void saveuser(new_users_from_DB u1) {
+	public void saveuser(NewUser u1) {
 		urepo.save(u1);
 	}
 	
-	public List<new_users_from_DB> getall(){
+	public List<NewUser> getall(){
 		return urepo.findAll();
 	}
 	
-	public Optional<new_users_from_DB> findByid(String id) {
+	public Optional<NewUser> findByid(String id) {
 		return Optional.ofNullable(urepo.findById(id).orElse(null));
 	}
 	
@@ -51,11 +51,11 @@ public class new_userServices {
 		urepo.deleteById(id);
 	}
 	
-	public new_users_from_DB findByusername(String username) {
+	public NewUser findByusername(String username) {
 		return urepo.findByUsername1(username);
 	}
 
-	public void saveAdmin(new_users_from_DB u1) {
+	public void saveAdmin(NewUser u1) {
 		// TODO Auto-generated method stub
 		u1.setUsername1(u1.getUsername1());
 		u1.setPassword(pass.encode(u1.getPassword()));

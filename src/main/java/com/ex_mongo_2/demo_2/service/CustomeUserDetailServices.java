@@ -6,7 +6,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 
-import com.ex_mongo_2.demo_2.POJO.new_users_from_DB;
+import com.ex_mongo_2.demo_2.POJO.NewUser;
 import com.ex_mongo_2.demo_2.repository.New_userRepo;
 
 
@@ -20,7 +20,7 @@ public class CustomeUserDetailServices implements UserDetailsService{
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
-	    new_users_from_DB user = new_userRepo.findByUsername1(username);
+	    NewUser user = new_userRepo.findByUsername1(username);
 
 	   if(user!=null) {
 		   

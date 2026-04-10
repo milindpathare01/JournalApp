@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.ex_mongo_2.demo_2.POJO.new_users_from_DB;
-import com.ex_mongo_2.demo_2.service.new_userServices;
+import com.ex_mongo_2.demo_2.POJO.NewUser;
+import com.ex_mongo_2.demo_2.service.NewUserService;
 import com.ex_mongo_2.demo_2.service.userServices;
 
 @RestController
@@ -21,12 +21,12 @@ import com.ex_mongo_2.demo_2.service.userServices;
 public class AdminController {
 	
 	@Autowired
-	private new_userServices userServices;
+	private NewUserService userServices;
 	
 	
 	@GetMapping("/all-users")
 	public ResponseEntity<?> getallusers() {
-		List<new_users_from_DB> list =  userServices.getall();
+		List<NewUser> list =  userServices.getall();
 		if(list!=null && !list.isEmpty()) {
 			 return new ResponseEntity<>(list,HttpStatus.FOUND);
 		}
@@ -34,7 +34,7 @@ public class AdminController {
 	}
 	
 	@PostMapping("/create-admin")
-	public ResponseEntity create_admin(@RequestBody new_users_from_DB u1) {
+	public ResponseEntity create_admin(@RequestBody NewUser u1) {
 		userServices.saveAdmin(u1);
 		return new ResponseEntity(HttpStatus.CREATED);
 	}

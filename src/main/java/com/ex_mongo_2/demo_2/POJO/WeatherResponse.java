@@ -9,7 +9,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Component
-public class WheatherResponse {
+public class WeatherResponse {
 
     private Current current;
 

@@ -18,14 +18,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ex_mongo_2.demo_2.POJO.JournalEntry;
-import com.ex_mongo_2.demo_2.service.JournalEntry_service;
+import com.ex_mongo_2.demo_2.service.JournalEntryService;
 
 @RestController
 @RequestMapping("/journal_res")
 public class demo2_controller_ResponseEntity {
 	
 	@Autowired
-	private JournalEntry_service service;
+	private JournalEntryService service;
 	
 	@GetMapping
 	public List<JournalEntry> getAll(){

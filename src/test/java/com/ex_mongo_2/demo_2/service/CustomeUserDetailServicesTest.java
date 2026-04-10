@@ -16,7 +16,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import com.ex_mongo_2.demo_2.POJO.new_users_from_DB;
+import com.ex_mongo_2.demo_2.POJO.NewUser;
 import com.ex_mongo_2.demo_2.repository.New_userRepo;
 import com.mongodb.assertions.Assertions;
 
@@ -38,7 +38,7 @@ public class CustomeUserDetailServicesTest {
 	@Test
 	void loadUserByUsernameTest() {
 		
-		when(repo.findByUsername1(ArgumentMatchers.anyString())).thenReturn((new_users_from_DB) User.builder().username("ram").password("ram").build());
+		when(repo.findByUsername1(ArgumentMatchers.anyString())).thenReturn((NewUser) User.builder().username("ram").password("ram").build());
 		UserDetails user = userdetails.loadUserByUsername("ram");
 		Assertions.assertNotNull(user);
 	}

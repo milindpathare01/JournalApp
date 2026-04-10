@@ -15,7 +15,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import com.ex_mongo_2.demo_2.service.CustomeUserDetailServices;
-import com.ex_mongo_2.demo_2.service.new_userServices;
+import com.ex_mongo_2.demo_2.service.NewUserService;
 import com.ex_mongo_2.demo_2.utils.Jwtutility;
 
 import io.jsonwebtoken.io.IOException;

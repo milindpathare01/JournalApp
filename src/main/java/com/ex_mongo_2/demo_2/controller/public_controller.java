@@ -17,10 +17,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ex_mongo_2.demo_2.POJO.JournalEntry;
-import com.ex_mongo_2.demo_2.POJO.new_users_from_DB;
+import com.ex_mongo_2.demo_2.POJO.NewUser;
 import com.ex_mongo_2.demo_2.POJO.users;
 import com.ex_mongo_2.demo_2.service.CustomeUserDetailServices;
-import com.ex_mongo_2.demo_2.service.new_userServices;
+import com.ex_mongo_2.demo_2.service.NewUserService;
 import com.ex_mongo_2.demo_2.service.userServices;
 import com.ex_mongo_2.demo_2.utils.Jwtutility;
 
@@ -33,7 +33,7 @@ import lombok.extern.slf4j.Slf4j;
 public class public_controller {
 	
 	@Autowired
-	private new_userServices services;
+	private NewUserService services;
 	
 	@Autowired
 	private CustomeUserDetailServices detail_service;
@@ -45,12 +45,12 @@ public class public_controller {
 	private Jwtutility jwt;
 	
 	@PostMapping("/signup")
-	public void creatuser(@RequestBody new_users_from_DB u1) {
+	public void creatuser(@RequestBody NewUser u1) {
 		services.saveNewEntry(u1);
 	}
 	
 	@PostMapping("/login")
-	public ResponseEntity<String> login(@RequestBody new_users_from_DB u1) {
+	public ResponseEntity<String> login(@RequestBody NewUser u1) {
 		
 		try {
 			auth.authenticate(new UsernamePasswordAuthenticationToken(u1.getUsername1(),u1.getPassword()));
